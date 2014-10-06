@@ -1,0 +1,28 @@
+{
+  "namespace": "com.burihabwa.cal.avro.twitter",
+  "protocol": "FastTweet",
+  "types": [
+      {
+          "type": "record",
+          "name": "Tweet",
+          "fields": [
+              {"name": "message", "type": "string"},
+              {"name": "time", "type": "long"},
+              {"name": "author", "type": {
+                  "type": "record",
+                  "name": "User",
+                   "fields": [
+                       {"name": "handle", "type": "string"}
+                   ]}
+              }
+          ]
+      }
+  ],
+  "messages": {
+    "send": {
+      "doc": "Send a tweet",
+      "request": [{ "name":"tweet", "type": "Tweet" }],
+      "response": "string"
+    }
+  }
+}
