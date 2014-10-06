@@ -1,5 +1,5 @@
-# avro-twitter
-Avro-twitter est une implémentation basique d'un service similiare reposant sur avro.
+# avro-twitter-server
+Avro-twitter est une implémentation basique d'un service similiare à Twitter reposant sur avro.
 
 ## Construire le projet
 
