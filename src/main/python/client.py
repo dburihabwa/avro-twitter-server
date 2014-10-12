@@ -57,7 +57,7 @@ if __name__ == '__main__':
         message = raw_input("Please enter your message :\t")
         print send_tweet(handle, message)
     elif sys.argv[1] == "list":
-        handle = raw_input("Please the handle of the user whose tweets you would like to read :\t")
+        handle = raw_input("Please enter the handle of the user whose tweets you would like to read :\t")
         tweets = get_tweets(handle)
         for tweet in tweets:
             print("@" + tweet['author']['handle'] + "\t(" + str(tweet['time']) + ")\t" + tweet['message'])
