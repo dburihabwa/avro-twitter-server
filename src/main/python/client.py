@@ -58,9 +58,14 @@ if __name__ == '__main__':
         print send_tweet(handle, message)
     elif sys.argv[1] == "list":
         handle = raw_input("Please enter the handle of the user whose tweets you would like to read :\t")
-        tweets = get_tweets(handle)
+        tweets = None
+        try:
+            tweets = get_tweets(handle)
+        except AttributeError:
+            print("Could not find any tweet for user " + handle)
+            exit(0)        
         for tweet in tweets:
-            print("@" + tweet['author']['handle'] + "\t(" + str(tweet['time']) + ")\t" + tweet['message'])
+            print("\t@" + tweet['author']['handle'] + "\t(" + str(tweet['time']) + ")\t" + tweet['message'])
     else:
         print("Command " + sys.argv[1] + " not supported")
         print(usage)
