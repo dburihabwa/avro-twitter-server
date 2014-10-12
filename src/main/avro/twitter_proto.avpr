@@ -23,6 +23,11 @@
       "doc": "Send a tweet",
       "request": [{ "name":"tweet", "type": "Tweet" }],
       "response": "string"
+    },
+    "tweets": {
+        "doc": "Get all the tweets by a user",
+        "request": [{"name": "user", "type": "User"}],
+        "response": {"type": "array", "items": "Tweet"}
     }
   }
 }
