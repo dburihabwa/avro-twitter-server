@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by dorian on 10/12/14.
+ * An HTTP server that serves @{Tweet} using the @{FastTweet} protocol.
  */
 public class FastTweetServer extends HttpServer {
     static class FastTweetImpl implements FastTweet {
@@ -44,7 +44,7 @@ public class FastTweetServer extends HttpServer {
             message += "(" + df.format(date) + ")\t";
             message += tweet.getMessage();
             logger.log(Level.INFO, message);
-            logger.log(Level.INFO, "The database now contains " + tweets.size() + " users and " + authorTweets.size() + " tweets from " +  author.getHandle());
+            logger.log(Level.INFO, "The database now contains " + tweets.size() + " users and " + authorTweets.size() + " tweets from " + author.getHandle());
             return message;
         }
 
@@ -57,6 +57,11 @@ public class FastTweetServer extends HttpServer {
         }
     }
 
+    /**
+     * Usual Constructor
+     * @param port Port number to run on
+     * @throws IOException If an error occurs while instantiating the server
+     */
     public FastTweetServer(int port) throws IOException {
         super(new SpecificResponder(FastTweet.class, new FastTweetImpl()), port);
     }
