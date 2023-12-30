@@ -3,7 +3,6 @@ package com.burihabwa.cal.avro;
 import com.burihabwa.cal.avro.twitter.FastTweet;
 import com.burihabwa.cal.avro.twitter.Tweet;
 import com.burihabwa.cal.avro.twitter.User;
-import org.apache.avro.AvroRemoteException;
 import org.apache.avro.ipc.HttpServer;
 import org.apache.avro.ipc.specific.SpecificResponder;
 
@@ -28,7 +27,7 @@ public class FastTweetServer extends HttpServer {
         }
 
         @Override
-        public CharSequence send(Tweet tweet) throws AvroRemoteException {
+        public CharSequence send(Tweet tweet) {
             User author = tweet.getAuthor();
             List<Tweet> authorTweets = tweets.get(author);
             if (authorTweets == null) {
@@ -49,7 +48,7 @@ public class FastTweetServer extends HttpServer {
         }
 
         @Override
-        public List<Tweet> tweets(User user) throws AvroRemoteException {
+        public List<Tweet> tweets(User user) {
             List<Tweet> tweetsFromUser = tweets.get(user);
             int numberOfTweetsFromUser = tweetsFromUser == null ? 0 : tweetsFromUser.size();
             logger.log(Level.INFO, "Returning " + numberOfTweetsFromUser + " tweets from " + user.getHandle());
@@ -59,6 +58,7 @@ public class FastTweetServer extends HttpServer {
 
     /**
      * Usual Constructor
+     *
      * @param port Port number to run on
      * @throws IOException If an error occurs while instantiating the server
      */
